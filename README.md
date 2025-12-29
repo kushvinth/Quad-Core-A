@@ -16,7 +16,7 @@ An AI-powered system that **assesses symptom urgency (not diagnosis)** and guide
 
 ## 🛠 Tech Stack
 
-Gemini API · Firestore · Google Maps API · Speech-to-Text · BigQuery · Firebase Hosting
+Gemini API · Firestore · Google Maps API · Speech-to-Text · Firebase Hosting
 
 ---
 
