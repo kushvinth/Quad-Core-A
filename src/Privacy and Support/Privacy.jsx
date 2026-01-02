@@ -1,0 +1,81 @@
+import "../Medical History/MHPS.css"
+
+export default function Privacy(){
+    const lastUpdateDate = "29/12/2025";
+    return (
+        <div className="privacy">
+            <div className="header">
+                <h1>We Respect Your Privacy</h1>
+                <h3>Our Privacy Policy</h3>
+                <p><strong>Last Updated: {lastUpdateDate}</strong></p>
+                <p>This Privacy Policy explains how CureOn collects, uses, and protects your 
+                    information when you use our application.</p>
+            </div>
+            <p>CureOn respects your privacy and is committed to protecting your personal information. 
+                This Privacy Policy explains how we collect, use, and safeguard your data when you use the CureOn application.
+                By using CureOn, you agree to the practices described in this policy.</p>
+            <hr></hr>
+            <h2>Information We Collect</h2>
+            <p>We may collect the following types of information:</p>
+            <ul>
+                <li>Your Name</li>
+                <li>Your Email Address</li>
+                <li>Health-related information <strong>you choose to enter</strong>, such as wellness or fitness data</li>
+                <li>Your Location (In case of emergencies only)</li>
+            </ul>
+            <hr></hr>
+            <h2>How We Use Your Information</h2>
+            <ul>
+                <li>To provide and maintain CureOn’s services</li>
+                <li>To personalize your health management experience</li>
+                <li>To improve functionality and user experience</li>
+                <li>To respond to support requests</li>
+            </ul>
+            <hr></hr>
+            <h2>Data Storage and Security</h2>
+            <p>
+                We use reasonable security measures to protect your information from
+                unauthorized access, loss, or misuse. Access to data is limited to authorized
+                use only.
+            </p>
+            <hr></hr>
+             <h2>Sharing of Information</h2>
+            <p>
+                CureOn does not sell, trade, or rent personal information to third parties.
+                Information may be shared only when required by law or to protect the rights
+                and safety of users.
+            </p>
+            <hr></hr>
+            <h2>User Rights</h2>
+            <ul>
+                <li>Access, update, or delete your personal data</li>
+                <li>Request deletion of stored information</li>
+                <li>Stop using the application at any time</li>
+            </ul>
+            <hr></hr>
+            <h2>Children’s Privacy</h2>
+            <p>
+                CureOn is not intended for children under the age of 13. We do not knowingly
+                collect personal information from children.
+            </p>
+            <hr></hr>
+            <h2>Changes to This Policy</h2>
+            <p>
+                This Privacy Policy may be updated from time to time. Any changes will be
+                posted on this page with an updated revision date.
+            </p>
+            <hr></hr>
+            <h2>Contact Us</h2>
+            <p>
+                If you have any questions regarding our services, please contact us at:
+            </p>
+            <p><strong>Email:  </strong><a href="mailto:akshayanvishaalb@gmail.com">support@cureon.com</a></p>
+            <p><strong>Phone: </strong>93601 93992</p>
+            <hr></hr>
+            <footer>
+                © 2025 CureOn. All rights reserved.
+            </footer>
+
+        </div>
+    );
+}

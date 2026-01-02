@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+            Reports
+        </title>
+
+        <link rel = "stylesheet" href = "reports.css">
+    </head>
+
+    <body>
+        <div class = "container">
+            <h1>Reports & Scans</h1>
+
+  <!-- Upload Section -->
+  <div class="upload-card">
+    <h3 class = "upload-report-heading">Upload Report</h3>
+
+<div class="file-upload">
+  <input type="file" id="reportFile" accept=".pdf,.jpg,.png" hidden />
+  <label for="reportFile" class="upload-btn">
+    📄 Choose Report File
+  </label>
+  <span id="fileName">No file selected</span>
+</div>
+    <input type="text" id="reportName" placeholder="Report Name (e.g. Blood Test)" />
+    <button id="uploadBtn">Upload</button>
+  </div>
+
+  <!-- Reports List -->
+<div class="reports-list" id="reportsSection" style="display:none;">
+  <h3>Your Reports</h3>
+  <div id="reportsContainer"></div>
+</div>
+
+
+        </div>
+
+        
+        <script src="../common/theme.js"></script>
+        <script src="../common/logout.js"></script>
+        <script src="../common/sidebar.js"></script>
+        <script src="../assets/js/global.js"></script>
+        <script src="reports.js"></script>
+    </body>
+</html>

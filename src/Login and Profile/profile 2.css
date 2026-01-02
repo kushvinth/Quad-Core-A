@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f8fafc;
+}
+
+.profile-container {
+  max-width: 520px;
+  margin: 80px auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.profile-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.field label {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 15px;
+}
+
+.field input:disabled,
+.field select:disabled {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+button {
+  padding: 10px 22px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#editBtn {
+  background: #e2e8f0;
+}
+
+#saveBtn {
+  background: #2563eb;
+  color: #fff;
+}
+
+#saveBtn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CureOn | Prescriptions</title>
+  <link rel="stylesheet" href="prescriptions.css" />
+</head>
+<body>
+
+<div class="container">
+  <h1>Prescriptions</h1>
+
+  <div class="upload-card">
+    <h3>Upload Prescription</h3>
+
+    <div class="file-upload">
+      <input type="file" id="prescriptionFile" accept=".pdf,.jpg,.png" hidden />
+      <label for="prescriptionFile" class="file-label">📁 Choose Prescription File</label>
+      <span id="fileName">No file chosen</span>
+    </div>
+
+    <input type="text" id="prescriptionName" placeholder="Prescription Name (e.g. Fever Treatment)" />
+    <input type="text" id="doctorName" placeholder="Doctor Name" />
+    <input type="date" id="prescribedDate" />
+
+    <button id="uploadBtn">Upload</button>
+  </div>
+
+  <div class="prescription-list" id="prescriptionSection" style="display:none;">
+    <h3>Your Prescriptions</h3>
+    <div id="prescriptionContainer"></div>
+  </div>
+</div>
+
+<script src="../common/theme.js"></script>
+<script src="../common/logout.js"></script>
+<script src="../common/sidebar.js"></script>
+<script src="../assets/js/global.js"></script>
+<script src="prescriptions.js"></script>
+
+</body>
+</html>
