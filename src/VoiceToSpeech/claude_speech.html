@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CureOn - Health Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0f7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #5ba3d0;
+        }
+        
+        .profile-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+        
+        .input-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            max-width: 700px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        .text-input {
+            flex: 1;
+            padding: 18px 24px;
+            border: 1px solid #e0e0e0;
+            border-radius: 30px;
+            font-size: 16px;
+            background: white;
+            color: #666;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .text-input:focus {
+            outline: none;
+            border-color: #5ba3d0;
+            box-shadow: 0 4px 12px rgba(91, 163, 208, 0.15);
+        }
+        
+        .text-input.recording {
+            border-color: #ff4e50;
+            box-shadow: 0 4px 12px rgba(255, 78, 80, 0.15);
+        }
+        
+        .send-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .send-btn:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .mic-btn {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .mic-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+        
+        .mic-btn.recording {
+            background: #ff4e50;
+            border-color: #ff4e50;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 78, 80, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 15px rgba(255, 78, 80, 0);
+            }
+        }
+        
+        .mic-icon {
+            width: 24px;
+            height: 24px;
+            fill: #666;
+        }
+        
+        .mic-btn.recording .mic-icon {
+            fill: white;
+        }
+        
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            max-width: 900px;
+        }
+        
+        .suggestion-btn {
+            padding: 12px 20px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        
+        .suggestion-btn:hover {
+            background: #f8f9fa;
+            border-color: #5ba3d0;
+            color: #5ba3d0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .send-icon {
+            width: 20px;
+            height: 20px;
+            fill: #999;
+        }
+        
+        .status-text {
+            position: absolute;
+            bottom: -30px;
+            font-size: 14px;
+            color: #ff4e50;
+            font-weight: 500;
+        }
+        
+        .transcript-display {
+            max-width: 700px;
+            width: 100%;
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            min-height: 60px;
+            display: none;
+        }
+        
+        .transcript-display.show {
+            display: block;
+        }
+        
+        .transcript-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .transcript-text {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">CureOn</div>
+        <div class="profile-icon">🌻</div>
+    </header>
+    
+    <main>
+        <h1>How are you feeling today?</h1>
+        
+        <div class="input-container">
+            <input 
+                type="text" 
+                class="text-input" 
+                id="textInput"
+                placeholder="I am having headache from morning..."
+            >
+            <button class="send-btn" id="sendBtn">
+                <svg class="send-icon" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+            </button>
+            <button class="mic-btn" id="micBtn">
+                <svg class="mic-icon" viewBox="0 0 24 24">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                </svg>
+                <span class="status-text" id="statusText"></span>
+            </button>
+        </div>
+        
+        <div class="transcript-display" id="transcriptDisplay">
+            <div class="transcript-label">Transcript</div>
+            <div class="transcript-text" id="transcriptText"></div>
+        </div>
+        
+        <div class="suggestions">
+            <button class="suggestion-btn">
+                <svg class="send-icon" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+                When was my last visit to doctor and why?
+            </button>
+            <button class="suggestion-btn">
+                <svg class="send-icon" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+                What's my height as of last month?
+            </button>
+            <button class="suggestion-btn">
+                <svg class="send-icon" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+                Show summary of my blood report
+            </button>
+            <button class="suggestion-btn">
+                <svg class="send-icon" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+                Show me pediatricians nearby
+            </button>
+            <button class="suggestion-btn">
+                <svg class="send-icon" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+                When is my next appointment?
+            </button>
+        </div>
+    </main>
+    
+    <script>
+        const micBtn = document.getElementById('micBtn');
+        const textInput = document.getElementById('textInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const statusText = document.getElementById('statusText');
+        const transcriptDisplay = document.getElementById('transcriptDisplay');
+        const transcriptText = document.getElementById('transcriptText');
+        const suggestionBtns = document.querySelectorAll('.suggestion-btn');
+        
+        let isRecording = false;
+        let recognition = null;
+        let fullTranscript = '';
+        
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        
+        if (!SpeechRecognition) {
+            statusText.textContent = "Not supported";
+            statusText.style.color = "#999";
+            micBtn.disabled = true;
+            micBtn.style.opacity = "0.5";
+            micBtn.style.cursor = "not-allowed";
+        }
+        
+        micBtn.addEventListener('click', () => {
+            console.log('clicked');
+            if (isRecording) {
+                stopRecording();
+            } else {
+                startRecording();
+            }
+        });
+        
+        function startRecording() {
+            isRecording = true;
+            micBtn.classList.add('recording');
+            textInput.classList.add('recording');
+            statusText.textContent = "Listening...";
+            fullTranscript = '';
+            
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = 'en-US';
+            
+            recognition.onresult = (e) => {
+                let interimTranscript = '';
+                let finalTranscript = '';
+                
+                for (let i = e.resultIndex; i < e.results.length; i++) {
+                    const transcript = e.results[i][0].transcript;
+                    if (e.results[i].isFinal) {
+                        finalTranscript += transcript + ' ';
+                    } else {
+                        interimTranscript += transcript;
+                    }
+                }
+                
+                if (finalTranscript) {
+                    fullTranscript += finalTranscript;
+                }
+                
+                const displayText = fullTranscript + interimTranscript;
+                textInput.value = displayText;
+                
+                if (fullTranscript.trim()) {
+                    transcriptText.textContent = fullTranscript;
+                    transcriptDisplay.classList.add('show');
+                }
+            };
+            
+            recognition.onerror = (e) => {
+                console.error('Speech recognition error:', e.error);
+                stopRecording();
+                statusText.textContent = "Error occurred";
+                setTimeout(() => statusText.textContent = "", 2000);
+            };
+            
+            recognition.onend = () => {
+                if (isRecording) {
+                    recognition.start();
+                }
+            };
+            
+            recognition.start();
+        }
+        
+        function stopRecording() {
+            isRecording = false;
+            micBtn.classList.remove('recording');
+            textInput.classList.remove('recording');
+            statusText.textContent = "";
+            
+            if (recognition) {
+                recognition.stop();
+                recognition = null;
+            }
+        }
+        
+        sendBtn.addEventListener('click', () => {
+            const text = textInput.value.trim();
+            if (text) {
+                alert(`Sending: "${text}"`);
+                textInput.value = '';
+                transcriptDisplay.classList.remove('show');
+                fullTranscript = '';
+            }
+        });
+        
+        textInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                console.log('Entered');
+                sendBtn.click();
+            }
+        });
+        
+        suggestionBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = btn.textContent.trim();
+                textInput.value = text;
+                textInput.focus();
+            });
+        });
+    </script>
+</body>
+</html>

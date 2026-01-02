@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="dashboard.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cureon</title>
+  </head>
+<!--  <body>-->
+<!--    <div id="root"></div>-->
+<!--    <script type="module" src="/src/main.jsx"></script>-->
+
+<!--    <script type="module" src="/src/main.jsx"></script>-->
+<!--  </body>-->
+
+  <body>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar collapsed" id="sidebar">
+
+      <!-- TOGGLE -->
+      <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+
+      <!-- MAIN MENU -->
+      <ul class="menu-top">
+        <li class = "dashboard">
+          <a href="dashboard.html">
+            <span class="icon">🏠</span>
+            <span class="text">Dashboard</span>
+          </a>
+        </li>
+        <li class = "profile">
+          <a href="../Login%20and%20Profile/profile.html">
+            <span class="icon">👤</span>
+            <span class="text">Profile</span>
+          </a>
+        </li>
+<!--      </ul>-->
+
+      <!-- HEALTH RECORDS -->
+<!--      <ul class="menu-middle">-->
+        <div class="sidebarSeparator" id="sidebarSeparator1"></div>
+
+        <li class = "medical-history">
+          <a href="../Medical%20History/MedicalHistory.html">
+            <span class="icon">🩺</span>
+            <span class="text">Medical History</span>
+          </a>
+        </li>
+
+        <li class = "reports">
+          <a href="../Reports/reports.html">
+            <span class="icon">📄</span>
+            <span class="text">Reports & Scans</span>
+          </a>
+        </li>
+
+        <li class = "prescriptions">
+          <a href="../Prescriptions/prescriptions.html">
+            <span class="icon">💊</span>
+            <span class="text">Prescriptions</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- SETTINGS -->
+      <ul class="menu-bottom">
+        <li class = "privacy">
+          <a href="../Privacy%20and%20Support/Privacy.html">
+            <span class="icon">🔒</span>
+            <span class="text">Privacy</span>
+          </a>
+        </li>
+
+        <li class = "support">
+          <a href="../Privacy%20and%20Support/Support.html">
+            <span class="icon">❓</span>
+            <span class="text">Support</span>
+          </a>
+        </li>
+      </ul>
+
+    </aside>
+
+    <!-- APP NAME (OUTSIDE SIDEBAR) -->
+    <div class="app-title">CureOn</div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+
+      <!-- PROFILE -->
+      <div class="profile-wrapper">
+        <img src="avatar.png" alt="Profile" class="profile-pic" onclick="toggleProfileMenu()">
+
+        <div class="profile-menu" id="profileMenu">
+<!--          <a href="./src/profile.html" class="profile-name" id="ProfileBtn">Quad Core</a>-->
+          <a href="../Login%20and%20Profile/profile.html" class="profile-name" id="ProfileBtn" onclick="event.stopPropagation()">Quad Core</a>
+
+          <hr>
+          <a href="../Medical%20History/MedicalHistory.html" class="profile-item">Medical History</a>
+          <a href="../Settings/settings.html" class="profile-item">Settings</a>
+        </div>
+      </div>
+
+      <!-- MAIN UI -->
+      <main class="main" id="mainUI">
+        <div class="InitialContent">
+          <h1 class="prompt">How are you feeling today?</h1>
+
+          <div class="HStack">
+            <div class="input-box">
+              <input type="text" placeholder="How can I support you?" id="textInput">
+            </div>
+            <button class="input-mic" id="micBtn">🎤</button>
+
+<!--            <button class="sos" onclick="triggerSOS()" id="sosBtn">SOS</button>-->
+            <button class="sos" id="sosBtn">
+              SOS
+              <div class="overlay" id="sosOverlay">2 taps away from calling SOS</div>
+            </button>
+          </div>
+
+          <div id="chatContainer"></div>
+
+          <div class="suggestions">
+            <button>When was my last visit?</button>
+            <button>Show my health summary</button>
+            <button>Find doctors nearby</button>
+            <button>What's my height as of last month?</button>
+            <button>When is my next appointment?</button>
+          </div>
+        </div>
+      </main>
+
+    </div>
+
+  </div>
+
+  <div id="sosModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <pre id="modalOutput">Waiting for SOS...</pre>
+    </div>
+  </div>
+
+
+  <script type="module" src="dashboard.js"></script>
+  <script src="../SOS%20Backend/sos.jsx"></script>
+  <script src="DashboardExtension.js"></script>
+  <script>
+    const sosBtn = document.getElementById('sosBtn');
+    const overlay = document.getElementById('sosOverlay');
+
+    let clickCount = 0;
+    let clickTimer = null;
+
+    function triggerSOS() {
+      alert("SOS activated!"); // Replace with real SOS logic
+    }
+
+    function showOverlay(message) {
+      overlay.textContent = message;
+      overlay.classList.add('show');
+      setTimeout(() => {
+        overlay.classList.remove('show');
+      }, 1000); // Overlay disappears after 1 second
+    }
+
+    sosBtn.addEventListener('click', () => {
+      clickCount++;
+
+      if (clickCount === 1) {
+        showOverlay("2 taps away from calling SOS");
+      } else if (clickCount === 2) {
+        showOverlay("1 tap away from calling SOS");
+      } else if (clickCount === 3) {
+        overlay.textContent = "Calling for SOS"
+        setTimeout(() => {
+          overlay.classList.remove('show');
+        }, 600);
+        triggerSOS();
+        clickCount = 0;
+        clearTimeout(clickTimer);
+        clickTimer = null;
+        return;
+      }
+
+      clearTimeout(clickTimer);
+      clickTimer = setTimeout(() => {
+        clickCount = 0; // reset if user waits too long
+      }, 1000); // 1 second to register the next click
+    });
+  </script>
+  </body>
+
+</html>

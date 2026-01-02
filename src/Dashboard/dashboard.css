@@ -1,0 +1,487 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #ffffff;
+  color: #333;
+}
+
+/* ================= LAYOUT ================= */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  position: relative;
+  width: 240px;
+  min-width: 70px;
+  background: #f8fafc;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.6s ease;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.expanded {
+  width: 240px;
+}
+
+.sidebarSeparator {
+  background: #dadada;
+  width: 35px;
+  height: 1px;
+  transform: translateX(7px);
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.sidebarSeparator.expanded {
+  width: 205px;
+}
+
+/* Toggle button */
+.toggle-btn {
+  padding: 28px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* ================= MENUS ================= */
+.menu-top,
+.menu-middle,
+.menu-bottom {
+  list-style: none;
+  padding: 10px;
+}
+
+.menu-middle {
+  margin-top: auto;
+  padding-bottom: 10px;
+}
+
+.menu-bottom {
+  margin-top: auto;
+  padding-bottom: 20px;
+}
+
+
+.menu-top li,
+.menu-middle li,
+.menu-bottom li {
+  border-radius: 8px;
+}
+
+.menu-top li a,
+.menu-middle li a,
+.menu-bottom li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 15px;
+}
+
+.menu-top li:hover,
+.menu-middle li:hover,
+.menu-bottom li:hover {
+  background: #e2e8f0;
+}
+
+/* Icons */
+.icon {
+  font-size: 20px;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Text */
+.text {
+  white-space: nowrap;
+}
+
+.sidebar.collapsed .text {
+  display: none;
+}
+
+/* ================= APP TITLE ================= */
+.app-title {
+  position: fixed;
+  top: 26px;
+  left: 90px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #7db7ff;
+  z-index: 100;
+  transition: left 0.6s ease;
+}
+
+.sidebar.expanded ~ .app-title {
+  left: 260px;
+}
+
+/* ================= CONTENT ================= */
+.content {
+  flex: 1;
+  padding: 40px;
+  position: relative;
+  background: #ffffff;
+}
+
+/* ================= PROFILE ================= */
+.profile-wrapper {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+}
+
+.profile-pic {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Profile dropdown */
+.profile-menu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  width: 180px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 12px;
+  display: none;
+  z-index: 1000;
+}
+
+.profile-menu.active {
+  display: block;
+}
+
+.profile-name {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #303030;
+  text-decoration: none;
+}
+
+.profile-menu hr {
+  border: none;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 8px 0;
+}
+
+.profile-item {
+  padding: 8px 0;
+  font-size: 14px;
+  color: #303030;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.profile-item:hover {
+  color: #2563eb;
+}
+
+/* ================= MAIN UI ================= */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  width: 100%;
+  height: 100vh;
+}
+
+.prompt {
+  font-size: 26px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+/* Input box */
+.input-box {
+  display: flex;
+  align-items: center;
+  width: 600px;
+  height: 60px;
+  padding: 10px 20px;
+  background: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+  margin-right: 20px;
+}
+
+.input-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.input-box button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.input-mic {
+  display: flex;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  padding: 10px 20px;
+  background: #ffffff;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+  font-size: 1.2rem;
+}
+
+/* Active/recording state */
+#micBtn.recording {
+  border: 2px solid;
+  border-color: #7db7ff;
+}
+
+.InitialContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -220px;
+}
+
+.HStack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Suggestions */
+.suggestions {
+  margin-top: 0px;
+  max-width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.suggestions button {
+  background: #f4f6f8;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.suggestions button:hover {
+  background: #e2e8f0;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 70px !important;
+  }
+
+  .sidebar .text {
+    display: none;
+  }
+
+  .app-title {
+    left: 90px !important;
+  }
+}
+
+/* ================= RESPONSIVE CONTENT FIX ================= */
+
+@media (max-width: 768px) {
+
+  /* Reduce content padding */
+  .content {
+    padding: 24px 16px;
+  }
+
+  /* Make input responsive */
+  .input-box {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Make suggestions responsive */
+  .suggestions {
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .suggestions button {
+    flex: 1 1 auto;
+    white-space: nowrap;
+  }
+
+  /* Reduce heading size slightly */
+  .prompt {
+    font-size: 22px;
+    text-align: center;
+  }
+}
+
+/* Extra safety for very small screens */
+@media (max-width: 480px) {
+
+  .input-box {
+    padding: 8px 14px;
+  }
+
+  .input-box button {
+    font-size: 16px;
+  }
+
+  .suggestions {
+    gap: 10px;
+  }
+}
+
+/* =================== SOS ====================== */
+.sos {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+  background: linear-gradient(to bottom right, #ff8383, #ed4e4e);
+  border: none;
+  border-radius: 80px;
+  width: 100px;
+  height: 60px;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 5px 8px 30px rgba(237, 78, 78, 0.65);
+
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 30px;
+  padding: 10px;
+  background: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  box-shadow: 0 0 30px rgba(197, 197, 197, 0.35);
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none; /* Allow clicks to pass through */
+  transition: opacity 0.3s;
+  transform: translate(-60px, -60px);
+}
+
+.overlay.show {
+  opacity: 1;
+}
+
+/* Modal overlay */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6); /* Semi-transparent background */
+}
+
+/* Modal content box */
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+
+
+/* ======================== When Chat is active ======================== */
+/* Hide prompt & suggestions after chat starts */
+.main.chat-started .prompt,
+.main.chat-started .suggestions {
+  display: none;
+}
+
+/* Move input upward */
+.main.chat-started #inputArea {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding-top: 10px;
+  z-index: 10;
+}
+
+.main.chat-started .InitialContent {
+  margin-top: 0;
+}
+
+.main.chat-started {
+  justify-content: flex-start;
+}
+
+/* Optional: spacing for chat */
+#chatContainer {
+  margin-top: 60px;
+  width: 780px;
+}
+
+#chatContainer * {
+  font-family: Georgia;
+  font-size: large;
+}
+

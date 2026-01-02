@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CureOn | Settings</title>
+  <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+
+<div class="settings-container">
+
+  <h1>Settings</h1>
+
+  <!-- 1. ACCOUNT SETTINGS -->
+  <section class="settings-section">
+    <h2>Account</h2>
+    <button class="danger-btn">Change Password</button>
+    <button class="danger-btn">Logout from all devices</button>
+  </section>
+
+  <!-- 4. NOTIFICATIONS -->
+  <section class="settings-section">
+    <h2>Notifications</h2>
+
+    <div class="setting-item">
+      <span>Appointment Reminders</span>
+      <input type="checkbox" id="appointments" checked>
+    </div>
+
+    <div class="setting-item">
+      <span>Medication Alerts</span>
+      <input type="checkbox" id="medications" checked>
+    </div>
+
+    <div class="setting-item">
+      <span>Health Summary Notifications</span>
+      <input type="checkbox" id="healthSummary">
+    </div>
+  </section>
+
+  <!-- 6. APPEARANCE -->
+  <section class="settings-section">
+    <h2>Appearance</h2>
+
+    <div class="setting-item">
+      <span>Dark Mode</span>
+      <input type="checkbox" id="darkMode">
+    </div>
+
+    <div class="setting-item">
+      <span>Reduce Animations</span>
+      <input type="checkbox" id="reduceMotion">
+    </div>
+  </section>
+
+  <!-- 7. SYSTEM -->
+  <section class="settings-section">
+    <h2>System</h2>
+
+    <button class="secondary-btn" id="clearCache">Clear Cache</button>
+    <button class="secondary-btn" id="resetSettings">Reset Settings</button>
+  </section>
+
+  <!-- 8. HELP & SUPPORT -->
+  <section class="settings-section">
+    <h2>Help & Support</h2>
+
+    <a href="../support/support.html" class="link-btn">Contact Support</a>
+    <a href="../support/support.html" class="link-btn">Report a Bug</a>
+    <a href="../privacy/privacy.html" class="link-btn">Privacy Policy</a>
+  </section>
+
+</div>
+
+<script src="../common/theme.js"></script>
+<script src="../common/logout.js"></script>
+<script src="../common/sidebar.js"></script>
+<script src="../assets/js/global.js"></script>
+<script src="settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ================= PAGE ================= */
+body {
+  background: #f8fafc;
+  color: #334155;
+  padding: 40px;
+}
+
+.reports-page {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 40px 30px;   /* MORE SPACE FROM ALL SIDES */
+}
+
+/* ================= HEADINGS ================= */
+.reports-page h1 {
+  font-size: 32px;
+  margin-bottom: 40px; /* SPACE BELOW MAIN HEADING */
+}
+
+.reports-page h3 {
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+/* ================= UPLOAD CARD ================= */
+.upload-card {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  margin-bottom: 60px; /* GAP BEFORE REPORTS SECTION */
+  margin-top: 20px;
+}
+
+.upload-report-heading
+{
+    margin-bottom: 10px;
+}
+
+.upload-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.upload-card button {
+  padding: 10px 26px;
+  border-radius: 22px;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.upload-card button:hover {
+  background: #1d4ed8;
+}
+
+/* ================= REPORTS LIST ================= */
+.reports-list {
+  margin-top: 20px;
+}
+
+.report-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 18px 24px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  margin-bottom: 18px;
+}
+
+.report-info strong {
+  font-size: 15px;
+}
+
+.report-info span {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.report-actions button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 14px;
+  color: #2563eb;
+}
+
+.report-actions .delete {
+  color: #dc2626;
+}
+
+/* ================= DARK MODE ================= */
+.dark-mode {
+  background: radial-gradient(circle at top, #020617, #000000);
+  color: #e5e7eb;
+}
+
+.dark-mode .upload-card,
+.dark-mode .report-item {
+  background: rgba(2,6,23,0.95);
+  border: 1px solid rgba(56,189,248,0.35);
+  box-shadow: 0 0 30px rgba(56,189,248,0.25);
+}
+
+.dark-mode input {
+  background: rgba(15,23,42,0.9);
+  color: #e5e7eb;
+  border: 1px solid rgba(56,189,248,0.4);
+}
+
+.file-upload {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.upload-btn {
+  padding: 12px 22px;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  color: #fff;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upload-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(56,189,248,0.4);
+}
+
+#fileName {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Dark mode */
+.dark-mode #fileName {
+  color: #94a3b8;
+}
